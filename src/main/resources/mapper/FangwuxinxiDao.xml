@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--相当于接口FangwuxinxiDao的实现类-->
+<mapper namespace="com.dao.FangwuxinxiDao">
+    <!--namespace:对应的是dao层中的接口
+                      id:必须与接口中的方法的名称一致
+              resultType：方法返回值的类型
+              持久层dao接口是没有实现类的，当调用接口方法时，接口全限名+方法名拼接字
+              符串作为 key 值，可唯一定位一个 MapperStatement。在 Mybatis 中，每一个
+              <select>、<insert>、<update>、<delete>标签，都会被解析为一个
+              MapperStatement 对象
+              -->
+	<!-- 可根据自己的需求，是否要使用 -->
+<!--    resultMap 为了映射select查询出来结果的集合，其主要作用是将实体类中的字段与数据库表中的字段进行关联映射-->
+    <resultMap type="com.entity.FangwuxinxiEntity" id="fangwuxinxiMap">
+        <!-- property对应实体类的属性名称，column为数据库字段名 -->
+        <result property="wuzhuzhanghao" column="wuzhuzhanghao"/>
+        <result property="wuzhuxingming" column="wuzhuxingming"/>
+        <result property="shouji" column="shouji"/>
+        <result property="leixing" column="leixing"/>
+        <result property="fangwudizhi" column="fangwudizhi"/>
+        <result property="fangwudaxiao" column="fangwudaxiao"/>
+        <result property="fangwutupian" column="fangwutupian"/>
+        <result property="xiangxijieshao" column="xiangxijieshao"/>
+        <result property="fangjianshu" column="fangjianshu"/>
+        <result property="meitianjiage" column="meitianjiage"/>
+        <result property="thumbsupnum" column="thumbsupnum"/>
+        <result property="crazilynum" column="crazilynum"/>
+        <result property="clicktime" column="clicktime"/>
+        <result property="clicknum" column="clicknum"/>
+    </resultMap>
+<!--select – 映射查询语句-->
+	<select id="selectListVO"
+		resultType="com.entity.vo.FangwuxinxiVO" >
+# 当进行单表简单查询时且返回值类型是基本类型时，一般mapper的返回类型尽量使用resultType
+		SELECT * FROM fangwuxinxi  fangwuxinxi         
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectVO"
+		resultType="com.entity.vo.FangwuxinxiVO" >
+		SELECT  fangwuxinxi.* FROM fangwuxinxi  fangwuxinxi 	
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectListView"
+		resultType="com.entity.view.FangwuxinxiView" >
+
+		SELECT  fangwuxinxi.* FROM fangwuxinxi  fangwuxinxi 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.entity.view.FangwuxinxiView" >
+		SELECT * FROM fangwuxinxi  fangwuxinxi <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+</mapper>
